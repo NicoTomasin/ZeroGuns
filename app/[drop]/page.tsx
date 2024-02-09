@@ -8,7 +8,7 @@ import path from "path";
 import { GetStaticPaths } from "next";
 export default async function Drop({ params }: { params: { drop: string } }) {
   const filePath = path.join(process.cwd(), "public", "data.json");
-  const data = await readFile(filePath, "utf8");
+  const data = await fs.readFile(filePath, "utf8");
   const drops = JSON.parse(data);
   if (!drops[params.drop]) {
     redirect("/404");
