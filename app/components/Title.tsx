@@ -7,9 +7,8 @@ export default function Title({
 }) {
   return (
     <div
-      className={
-        "text-sm border rounded-2xl px-4 py-1 inline-block " + borderColor
-      }
+      className="text-sm border rounded-2xl px-4 py-1 inline-block"
+      style={{ borderColor }}
     >
       <h2>{title}</h2>
     </div>

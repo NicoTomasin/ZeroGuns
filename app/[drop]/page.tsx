@@ -11,16 +11,14 @@ export default async function Drop({ params }: { params: { drop: string } }) {
   const data = await fs.readFile(filePath, "utf8");
   const dataParsed = JSON.parse(data);
   const drop = dataParsed[params.drop];
-  const { title, subtitle, color, borderColor } = drop;
+  const { title, subtitle, color } = drop;
   return (
     <>
       <div
-        className={
-          "min-h-screen px-4 py-12 min-w-screen flex flex-col justify-center items-center " +
-          color
-        }
+        className="min-h-screen px-4 py-12 min-w-screen flex flex-col justify-center items-center"
+        style={{ color }}
       >
-        <Title title={title} borderColor={borderColor} />
+        <Title title={title} borderColor={color} />
         <Subtitle subtitle={subtitle} />
         <Logo />
         <Media video={`/media/${params.drop}.mp4`} />
