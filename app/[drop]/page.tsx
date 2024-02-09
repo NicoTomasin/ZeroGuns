@@ -25,3 +25,12 @@ export default async function Drop({ params }: { params: { drop: string } }) {
     </div>
   );
 }
+export async function generateStaticParams() {
+  const filePath = path.join(process.cwd(), "public", "data.json");
+  const data = await fs.readFile(filePath, "utf8");
+  const drops = JSON.parse(data);
+
+  return Object.keys(drops).map((drop) => {
+    drop: drop;
+  });
+}
