@@ -4,9 +4,11 @@ import Logo from "../components/Logo";
 import Media from "../components/Media";
 import { redirect } from "next/navigation";
 import { promises as fs } from "fs";
+import path from "path";
 import { GetStaticPaths } from "next";
 export default async function Drop({ params }: { params: { drop: string } }) {
-  const data = await fs.readFile(process.cwd() + "/data.json", "utf8");
+  const filePath = path.join(process.cwd(), "public", "data.json");
+  const data = await readFile(filePath, "utf8");
   const drops = JSON.parse(data);
   if (!drops[params.drop]) {
     redirect("/404");
