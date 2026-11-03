@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+# 🔫 ZERO GUNS — Drops
 
-First, run the development server:
+**Landing de agradecimiento post-compra para cada drop de la marca de ropa ZERO GUNS.**
+
+[![Sitio](https://img.shields.io/badge/sitio-zero--guns.vercel.app-000000?style=flat-square&logo=vercel&logoColor=white)](https://zero-guns.vercel.app)
+![Next.js](https://img.shields.io/badge/Next.js_14-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+[![License: Proprietary](https://img.shields.io/badge/License-Propietaria-red.svg?style=flat-square)](LICENSE)
+
+**[👉 Ver sitio](https://zero-guns.vercel.app)** · **[Instagram](https://www.instagram.com/zeroguns/)**
+
+</div>
+
+---
+
+## 📖 Sobre el proyecto
+
+Cada drop de ZERO GUNS tiene su propia página (`/<drop>`) con un mensaje de agradecimiento, el logo de la marca, los colores de la colección y un video. Las páginas se generan **estáticamente** a partir de un único archivo JSON, así que sumar un drop nuevo no requiere tocar código.
+
+La home (`/`) muestra un mensaje de "Estamos construyendo" con link al Instagram de la marca.
+
+## ✨ Funcionalidades
+
+- ⚡ **Generación estática (SSG)** con `generateStaticParams`: una página por drop.
+- 🎨 **Theming por drop**: cada página toma su color desde la configuración.
+- 🎥 **Video** de la colección embebido.
+- 🚫 Las rutas que no existen en la configuración devuelven 404 (`dynamicParams = false`).
+- 🔤 Tipografía custom (Akira).
+
+## ➕ Agregar un drop
+
+1. Sumá una entrada en [`public/data.json`](public/data.json):
+
+   ```json
+   {
+     "alita": {
+       "title": "GRACIAS POR TU COMPRA",
+       "subtitle": "ZERO GUNS",
+       "color": "#fbe4d8"
+     }
+   }
+   ```
+
+2. Subí el video como `public/media/<drop>.mp4` (por ejemplo `public/media/alita.mp4`).
+3. Hacé el build: la nueva página queda disponible en `/<drop>`.
+
+## 🚀 Cómo correrlo
+
+Requisitos: Node.js 18.17+.
 
 ```bash
+git clone https://github.com/NicoTomasin/ZeroGuns.git
+cd ZeroGuns
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrí <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script | Descripción |
+| --- | --- |
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción |
+| `npm run start` | Sirve el build |
+| `npm run lint` | Linter (ESLint) |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🗂️ Estructura
 
-## Learn More
+```
+app/
+├── page.tsx              # Home: "Estamos construyendo"
+├── [drop]/page.tsx       # Página de cada drop (SSG)
+├── layout.tsx
+└── components/           # Title, Subtitle, Logo, Media
+public/
+├── data.json             # Configuración de los drops
+└── media/                # Videos de cada drop
+fonts/Akira.otf
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contribuir
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Este proyecto no es open source. Si encontraste un problema o tenés una propuesta, revisá la [guía de contribución](CONTRIBUTING.md).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 📄 Licencia
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+© Nico Tomasin. **Todos los derechos reservados.** El código se publica solo como referencia y portfolio; ver [LICENSE](LICENSE). La marca ZERO GUNS y su material gráfico pertenecen a sus respectivos dueños.
